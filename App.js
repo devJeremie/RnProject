@@ -14,9 +14,9 @@ export default function App() {
   return (
     <View style={styles.wrapper}> 
 
-      <Person name= "Jeremie" age= "41"/>
-      <Person name= "Tyfaine"/>
-      <Person name= "Mathias" age= "26"/>
+      <Person name= "Jeremie" age= "41">Alien</Person>
+      <Person name= "Tyfaine">Human</Person>
+      <Person name= "Mathias" age= "26">Human</Person>
       {/* <Text>
         Je m'appelle {getNames('Roger', 'Stan', 'Steve')}
       </Text> */}
