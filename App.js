@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TextInput, ScrollView, FlatList } from 'react-native'
 import React, { useState } from 'react'
 //import components
 import Person from './components/Person';
@@ -41,6 +41,35 @@ export default function App() {
   // const [name, setName] = useState();
   // const [age, setAge] = useState();
 
+  //les objets en react Native
+  const obj = [
+    {id: "1", name: "Stan", age: 45},
+    {id: "2", name: "Francine", age: 45},
+    {id: "3", name: "Hayley", age: 18},
+    {id: "4", name: "Steve", age: 14},
+    {id: "5", name: "Roger", age: 1023},
+    {id: "6", name: "Klaus", age: 30},
+  ]
+  const [family, setFamily] = useState(obj);
+
+  //FlatList le key n'est plus obligatoire mais il faudrai preciser l'id
+  const  renderItem = ({item}) => {
+    return(
+      <View style={styles.viewList} >
+      <Text style={styles.textView}>
+        <Text style={styles.textViewBold}>Nom: </Text> 
+        {item.name} 
+      </Text>
+      <Text style={styles.textView}>
+        <Text style={styles.textViewBold} >Age: </Text> 
+        {item.age} 
+      </Text>
+    </View>
+    )
+  }
+
+
+
   return (
     <View style={styles.wrapper}> 
 
@@ -62,7 +91,7 @@ export default function App() {
                 onPress= {(handlePress)}
         />
       </View> */}
-      
+
       {/*input*/}
       {/* <View style={styles.textInputWrapper}>
         <Text style={styles.text} >Nom: {name}</Text>
@@ -93,6 +122,33 @@ export default function App() {
       <View style={styles.viewTwo}>
         <Text style={styles.textTwo}>Deuxième pas React Native</Text>
       </View> */}
+      {/* Les objets en React Native */}
+      <View style= {styles.familyWrapper}>
+        {/* <ScrollView>
+        {
+          family.map(member => {
+            return(
+              <View key={member.id} style={styles.viewList} >
+                <Text style={styles.textView}>
+                  <Text style={styles.textViewBold}>Nom: </Text> 
+                  {member.name} 
+                </Text>
+                <Text style={styles.textView}>
+                  <Text style={styles.textViewBold} >Age: </Text> 
+                  {member.age} 
+                </Text>
+              </View>
+            )
+          })
+        }
+        </ScrollView> */}
+        <FlatList 
+          data={family}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
+      </View>
+
     </View>
   )
 }
@@ -119,6 +175,23 @@ const styles = StyleSheet.create({
       width: "90%",
     },
     text: {
+      fontSize: 20
+    },
+    familyWrapper: {
+      padding: 20,
+      backgroundColor: 'orange',
+    },
+    viewList: {
+      marginTop: 40,
+      backgroundColor: "purple",
+      padding: 20,
+    },
+    textView: {
+      color: 'white',
+      fontSize: 25
+    },
+    textViewBold: {
+      fontWeight: 'bold',
       fontSize: 20
     }
 })
